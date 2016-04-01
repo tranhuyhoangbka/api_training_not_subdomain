@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :products, only: [:show, :index], defaults: {format: 'json'}
-      resources :users, only: [] do
+      resources :users, except: [:new, :edit] do
         resources :products, only: [:create, :update, :destroy], defaults: {format: 'json'}
       end
     end
