@@ -5,12 +5,12 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
     before do
       @product = FactoryGirl.create :product
       get :show, id: @product, format: :json
-      @product_response = JSON.parse(response.body).except("created_at", "updated_at")
+      @product_response = JSON.parse response.body
     end
 
-    subject{@product_response}
+    subject{@product_response["product"]}
 
-    it{is_expected.to eq @product.as_json.except("created_at", "updated_at")}
+    it{is_expected.to eq @product.as_json.except("created_at", "updated_at", "user_id")}
     it{expect(response).to have_http_status(200)}
   end
 
@@ -22,7 +22,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
       get :index, format: :json
       @response_products = JSON.parse(response.body, symbolize_names: true)
     end
-    subject{@response_products.count}
+    subject{@response_products[:products].count}
     it{is_expected.to eq 2}
     it{expect(response).to have_http_status 200}
   end
@@ -38,7 +38,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
       let(:product_response){JSON.parse(response.body, symbolize_names: true)}
 
       it "renders the json representation for the product record just created" do
-        expect(product_response[:title]).to eq @product_attr[:title]
+        expect(product_response[:product][:title]).to eq @product_attr[:title]
       end
       it{expect(response).to have_http_status(201)}
     end
@@ -75,7 +75,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
         patch :update, {user_id: user.id, id: product.id, product: {title: "Sweet Candy for grand", price: 100}}, format: :json
       end
 
-      let(:product_response){JSON.parse(response.body, symbolize_names: true)}
+      let(:product_response){JSON.parse(response.body, symbolize_names: true)[:product]}
       it{expect(product_response[:title]).to eq "Sweet Candy for grand"}
       it{expect(product_response[:price]).to eq 100}
       it{expect(response).to have_http_status(200)}
