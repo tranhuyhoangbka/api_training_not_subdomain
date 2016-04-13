@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :products, only: [:show, :index], defaults: {format: 'json'}
       resources :users, except: [:new, :edit], defaults: {format: 'json'} do
         resources :products, only: [:create, :update, :destroy], defaults: {format: 'json'}
+        resources :orders, only: [:index, :show, :create], defaults: {format: 'json'}
       end
     end
   end

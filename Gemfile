@@ -34,6 +34,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "faker"
 gem "devise"
 gem 'active_model_serializers', git: 'git@github.com:rails-api/active_model_serializers.git', branch: '0-8-stable'
+# background job
+gem "sidekiq"
+#create env variable
+gem 'dotenv-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'

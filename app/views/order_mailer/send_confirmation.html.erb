@@ -1,0 +1,21 @@
+<h1>This Mail confirm order from API MARKET APP</h1>
+<h2>Hi! <%= @user.email %></h2>
+<p>You made a order. Please confirm it.</p>
+<table>
+  <tr>
+    <th>No</th>
+    <th>Name product</th>
+    <th>Price</th>
+  </tr>
+  <% @order.products.each.with_index(1) do |product, i| %>
+    <tr>
+      <td><%= i %></td>
+      <td><%= product.title %></td>
+      <td><%= product.price %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="3"><strong>Total: </strong><em><%= @order.total %> $</em></td>
+  </tr>
+</table>
+<h3>Thanks for your confirm. We're happy when is serverd you !</h3>
