@@ -9,6 +9,10 @@
 # 10.times do
 #   Product.create! title: Faker::Book.title, price: Faker::Number.decimal(2), user: user
 # end
-5.times do
-  User.create email: Faker::Internet.email, password: "12345678", password_confirmation: "12345678"
+# 5.times do
+#   User.create email: Faker::Internet.email, password: "12345678", password_confirmation: "12345678"
+# end
+
+12.times do
+  Order.create! user_id: [2,3,4].sample, total: rand(100)
 end

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :products, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   before_create :generate_authenticate_token!
 
