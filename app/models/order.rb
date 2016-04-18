@@ -8,8 +8,15 @@ class Order < ActiveRecord::Base
 
   before_validation :set_total!
 
+  def build_placements_with_product_ids_and_quantities product_ids_and_quantities
+    product_ids_and_quantities.each do |id_and_quantity|
+      id, quantity = id_and_quantity.split ","
+      self.placements.build product_id: id
+    end
+  end
+
   private
   def set_total!
-    self.total = products.map(&:price).sum
+    self.total = placements.map{|pa| pa.product.price}.sum
   end
 end
