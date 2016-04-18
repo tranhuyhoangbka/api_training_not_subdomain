@@ -6,6 +6,6 @@ class Placement < ActiveRecord::Base
 
   private
   def decrement_product_quantity
-    self.product.decrement!(quantity: quantity)
+    self.product.decrement!(:quantity, quantity)
   end
 end
