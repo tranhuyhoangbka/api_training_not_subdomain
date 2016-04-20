@@ -16,7 +16,7 @@ class Api::V1::OrdersController < ApplicationController
     order.build_placements_with_product_ids_and_quantities params[:order][:product_ids_and_quantities]
     if order.save
       order.reload
-      #SendMailConfirm.perform_async order.id
+      SendMailConfirm.perform_async order.id
       render json: order, status: 201, location: [:api, :v1, current_user, order]
     else
       render json: order.errors, status: 422

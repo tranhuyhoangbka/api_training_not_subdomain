@@ -18,6 +18,6 @@ class Order < ActiveRecord::Base
 
   private
   def set_total!
-    self.total = placements.map{|pa| pa.product.price}.sum
+    self.total = placements.map{|pa| pa.price * pa.quantity}.sum
   end
 end

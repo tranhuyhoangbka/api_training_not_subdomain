@@ -4,8 +4,10 @@ class Placement < ActiveRecord::Base
 
   after_create :decrement_product_quantity
 
+  delegate :title, :price, to: :product
+
   private
   def decrement_product_quantity
-    self.product.decrement!(:quantity, quantity)
+    self.product.decrement! :quantity, quantity
   end
 end
