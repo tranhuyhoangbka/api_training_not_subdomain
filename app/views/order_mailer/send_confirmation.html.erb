@@ -5,13 +5,15 @@
   <tr>
     <th>No</th>
     <th>Name product</th>
+    <th>Quantity</th>
     <th>Price</th>
   </tr>
-  <% @order.products.each.with_index(1) do |product, i| %>
+  <% @order.placements.each.with_index(1) do |pa, i| %>
     <tr>
       <td><%= i %></td>
-      <td><%= product.title %></td>
-      <td><%= product.price %></td>
+      <td><%= pa.title %></td>
+      <td><%= pa.quantity %></td>
+      <td><%= pa.price %></td>
     </tr>
   <% end %>
   <tr>
