@@ -21,11 +21,9 @@ RSpec.describe Api::V1::OrdersController, type: :controller do
       expect(orders_response[:orders].count).to eq 1
     end
 
-    it{expect(orders_response).to have_key(:meta)}
-    it{expect(orders_response[:meta]).to have_key(:pagination)}
-    it{expect(orders_response[:meta][:pagination]).to have_key(:per_page)}
-    it{expect(orders_response[:meta][:pagination]).to have_key(:total_pages)}
-    it{expect(orders_response[:meta][:pagination]).to have_key(:total_objects)}
+    it_behaves_like "paginated list" do
+      let(:hash_response){orders_response}
+    end
 
     it{expect(response).to have_http_status 200}
   end
