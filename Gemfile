@@ -38,6 +38,8 @@ gem 'active_model_serializers', git: 'git@github.com:rails-api/active_model_seri
 gem "sidekiq"
 #create env variable
 gem 'dotenv-rails'
+#pagination
+gem "kaminari"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
